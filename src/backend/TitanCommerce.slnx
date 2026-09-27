@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="TitanCommerce.Api/TitanCommerce.Api.csproj" />
+  <Project Path="TitanCommerce.Application/TitanCommerce.Application.csproj" />
+  <Project Path="TitanCommerce.Domain/TitanCommerce.Domain.csproj" />
+  <Project Path="TitanCommerce.Infrastructure/TitanCommerce.Infrastructure.csproj" />
+</Solution>

@@ -1,0 +1,6 @@
+@TitanCommerce.Api_HostAddress = http://localhost:5179
+
+GET {{TitanCommerce.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
