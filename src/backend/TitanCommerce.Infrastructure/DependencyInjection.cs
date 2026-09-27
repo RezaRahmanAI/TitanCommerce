@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TitanCommerce.Application.Common.Interfaces;
-using TitanCommerce.Application.Common.Persistence;
+using TitanCommerce.Infrastructure.Persistence;
 
 namespace TitanCommerce.Infrastructure;
 
