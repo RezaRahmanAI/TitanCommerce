@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using TitanCommerce.Application.Identity.DTOs;
 using TitanCommerce.Application.Identity.Interfaces;
 
@@ -28,6 +29,38 @@ public class AuthController : ControllerBase
         catch (InvalidOperationException ex)
         {
             return BadRequest(new { message = ex.Message });
+        }
+    }
+
+    [HttpPost("login")]
+    [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> Login([FromBody] LoginRequest request, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var response = await _authService.LoginAsync(request, cancellationToken);
+            return Ok(response);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Unauthorized(new { message = ex.Message });
+        }
+    }
+
+    [HttpPost("refresh-token")]
+    [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest request, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var response = await _authService.RefreshTokenAsync(request, cancellationToken);
+            return Ok(response);
+        }
+        catch (SecurityTokenException ex)
+        {
+            return Unauthorized(new { message = ex.Message });
         }
     }
 }

@@ -1,6 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <Compile Remove="Persistence\Configurations\RefreshTokenConfiguration.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TitanCommerce.Application\TitanCommerce.Application.csproj" />
     <ProjectReference Include="..\TitanCommerce.Domain\TitanCommerce.Domain.csproj" />
   </ItemGroup>
@@ -10,11 +14,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Persistence\Configurations\RefreshTokenConfiguration.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.19.2" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.19.2" />
   </ItemGroup>
 
   <PropertyGroup>

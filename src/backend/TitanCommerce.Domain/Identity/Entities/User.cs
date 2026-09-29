@@ -15,7 +15,7 @@ public class User : AuditableEntity<Guid>
     public UserRole Role { get; private set; }
 
 
-    public User() : base() {}
+    public User() : base() { }
 
     public static User Create(
         string firstName,
@@ -62,5 +62,13 @@ public class User : AuditableEntity<Guid>
             throw new ArgumentException("Password has cannot be empty.", nameof(newPasswordHash));
 
         PasswordHash = newPasswordHash;
+    }
+
+    private readonly List<RefreshToken> _refreshTokens = new();
+    public IReadOnlyCollection<RefreshToken> RefreshTokens => _refreshTokens.AsReadOnly();
+
+    public void AddRefreshToken(RefreshToken refreshToken)
+    {
+        _refreshTokens.Add(refreshToken);
     }
 }

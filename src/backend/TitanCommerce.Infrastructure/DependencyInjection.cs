@@ -29,6 +29,7 @@ public static class DependencyInjection
 
         // Security & Auth
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
+        services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddScoped<IAuthService, AuthService>();
 
         return services;
