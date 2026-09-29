@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TitanCommerce.Application.Common.Interfaces;
 using TitanCommerce.Domain.Common;
+using TitanCommerce.Domain.Identity.Entities;
 
 namespace TitanCommerce.Infrastructure.Persistence;
 
@@ -10,6 +11,8 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     }
+
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

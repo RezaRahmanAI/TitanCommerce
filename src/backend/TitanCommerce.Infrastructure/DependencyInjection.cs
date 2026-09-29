@@ -2,7 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TitanCommerce.Application.Common.Interfaces;
+using TitanCommerce.Application.Identity.Interfaces;
 using TitanCommerce.Infrastructure.Persistence;
+using TitanCommerce.Infrastructure.Security;
+using TitanCommerce.Infrastructure.Services;
 
 namespace TitanCommerce.Infrastructure;
 
@@ -23,6 +26,10 @@ public static class DependencyInjection
         }));
 
         services.AddScoped<IApplicationDbContext> (provider => provider.GetRequiredService<ApplicationDbContext>());
+
+        // Security & Auth
+        services.AddSingleton<IPasswordHasher, PasswordHasher>();
+        services.AddScoped<IAuthService, AuthService>();
 
         return services;
     }
